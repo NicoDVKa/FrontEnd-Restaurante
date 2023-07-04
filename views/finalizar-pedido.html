@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/img/favicon.png" type="image/x-icon">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css"
+    />
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+  />
+    <link rel="stylesheet" href="/styles/styles.css" />
+    <title>Herlan Resto Bar | Pedido</title>
+  </head>
+  <body class="body-bg">
+    <header>
+      <nav class="navbar navbar-expand-lg nav-bg fixed-top" data-bs-theme="dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/index.html"><img id="nav-icon" src="/img/favicon.png" alt="" class="img-fluid"></a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link ms-md-5" aria-current="page" href="/index.html"
+                  >Inicio</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="/views/contacto.html">Contacto</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="/views/adminComanda.html">Admin</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+   <main class="pt-5">
+    <section class="mt-5 text-center">
+      <img src="/img/finalizar pedido banner.png" alt="" class="img-fluid">
+    </section>
+    <section class="row container-fluid ">
+   <div id="product-cards-container" class="col-6 ">
+
+   </div>
+   <div class="col-6" id="details-and-form-container">
+    <form id="finalizar-pedido-form">
+     <section class="row align-items-center text-light">
+      <div class="col-6 mb-3">
+        <h4 class="text-light" id="price"></h4>
+      </div>
+      <div class="col-6 mb-3 position-relative">
+        <label class="form-label text-light">Forma de entrega</label>
+        <select id="delivery-select" class="form-select form-select-sm" >
+          <option disabled selected hidden class="default" value="">Elegir forma de entrega</option>
+          <option value="1">Salon</option>
+          <option value="2">Delivery</option>
+          <option value="3">Pedidos Ya</option>
+        </select>
+        <div class="invalid-tooltip">
+          Debes elegir una forma de entrega
+      </div>
+      </div>
+      <div class="col-6 mb-3 position-relative">
+        <label for="exampleInputEmail1" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="first-name-input" required maxlength="50">
+        <div class="invalid-tooltip">
+          El nombre ingresado es invalido
+      </div>
+      </div>
+      <div class="col-6 mb-3 position-relative">
+        <label for="exampleInputEmail1" class="form-label">Apellido</label>
+        <input type="text" class="form-control" id="last-name-input"  required maxlength="50">
+        <div class="invalid-tooltip">
+          El nombre ingresado es invalido
+      </div>
+      </div>
+      <div id="address-input-container" class="col-12 mb-3 d-none position-relative">
+        <label for="exampleInputEmail1" class="form-label">Dirección de entrega</label>
+        <input id="address-input" type="text" class="form-control" maxlength="50">
+        <div class="invalid-tooltip">
+          La dirección de entrega ingresada es invalida
+      </div>
+      </div>
+      <div class="w-100 d-flex container-fluid">
+       <button type="submit" class="btn btn-dark ms-auto me-3 mt-2 rounded-5 border" id="finalizar-pedido-btn">Confirmar pedido</button>
+      </div>
+    </form>
+     </section>
+    </div>
+  </section>
+  <div class="modal fade" id="success-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content bg-dark text-light">
+        <div class="modal-header border-0">
+          <h1 class="modal-title fs-5"></h1>
+        </div>
+        <section id="success-modal-body">
+          <div class="text-center mb-3">
+            <i class="bi  bi-check-circle display-1 text-success"></i>
+  
+            <div id="success-modal-body-text" class="my-4 text-center container">
+  
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="error-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content bg-dark text-light">
+        <div class="modal-header border-0">
+          <h1 class="modal-title fs-5"></h1>
+          <div data-bs-theme="dark">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+        </div>
+        <section id="error-modal-body">
+          <div class="text-center">
+            <i class="bi bi-exclamation-triangle display-1 text-danger "></i>
+          </div>
+          <div id="error-modal-body-text" class="mt-4 text-center container">
+  
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</main>
+    <footer class="nav-bg">
+      <div class="container mt-5">
+        <div class="row pb-1 text-white">
+          <div class="col-12 text-center p-4 py-2">
+            <div class="d-flex justify-content-center">
+              <div class="w-100 d-flex justify-content-center">
+                <div class="py-5 py-md-2 mx-3">
+                  <a
+                    class="h5 text-secondary text-decoration-none"
+                    href="https://www.instagram.com/"
+                    target="_blank"
+                  >
+                    <i class="fa-brands fa-instagram fa-2x"></i>
+                  </a>
+                </div>
+                <div class="py-5 py-md-2 mx-3">
+                  <a
+                    class="h5 text-secondary text-decoration-none"
+                    href="https://www.facebook.com/"
+                    target="_blank"
+                  >
+                    <i class="fa-brands fa-facebook-f fa-2x"></i>
+                  </a>
+                </div>
+                <div class="py-5 py-md-2 mx-3">
+                  <a
+                    class="h5 text-secondary text-decoration-none"
+                    href="https://twitter.com"
+                    target="_blank"
+                  >
+                    <i class="fa-brands fa-twitter fa-2x"></i>
+                  </a>
+                </div>
+                <div class="py-5 py-md-2 mx-3">
+                  <a
+                    class="h5 text-secondary text-decoration-none"
+                    href="https://www.youtube.com/"
+                    target="_blank"
+                  >
+                    <i class="fa-brands fa-youtube fa-2x"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-4 py-2 text-center">
+            <a href="/index.html">
+              <img
+                src="/img/logo.png"
+                alt="Logo de Herlan Resto Bar"
+                class="img-fluid logo-footer"
+              />
+            </a>
+          </div>
+
+          <div class="col-12 col-md-4 py-3 text-center text-md-start">
+            <div class="mb-1">
+              <div class="mb-1">
+                <a
+                  class="text-secondary text-start text-decoration-none item-footer"
+                  href="/views/404.html"
+                >
+                  Sobre nosotros</a
+                >
+              </div>
+              <div class="mb-1">
+                <a
+                  class="text-secondary text-decoration-none item-footer"
+                  href="/views/contacto.html"
+                >
+                  Contacto</a
+                >
+              </div>
+              <div class="mb-1">
+                <a
+                  class="text-secondary text-decoration-none item-footer"
+                  href="/views/404.html"
+                  >Centro de ayuda</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-4 py-3 text-center text-md-start">
+            <div class="mb-1">
+              <div class="mb-1">
+                <a
+                  class="text-secondary text-decoration-none item-footer"
+                  href="/views/404.html"
+                >
+                  Politica de privacidad</a
+                >
+              </div>
+              <div class="mb-1">
+                <a
+                  class="text-secondary text-decoration-none item-footer"
+                  href="/views/404.html"
+                >
+                  Preferencias de cookies</a
+                >
+              </div>
+              <div class="mb-1">
+                <a
+                  class="text-secondary text-decoration-none item-footer"
+                  href="/views/404.html"
+                >
+                  Avisos legales</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-12 pt-2 border-top border-2">
+            <p class="text-white text-center">
+              &copy; 2023 <b>Herlan Resto Bar</b> - Todos los Derechos
+              Reservados.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+      crossorigin="anonymous"
+    ></script>
+    <script src="/js/inits/finalizarPedidoInit.js" type="module"></script>
+  </body>
+</html>
